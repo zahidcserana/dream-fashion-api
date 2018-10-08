@@ -93,6 +93,19 @@
                     }
                 });
             });
+            $(document.body).delegate('.make-feature', 'click', function () {
+                var imgButton = event.target.id.split("-");
+                var image_id = imgButton[0];
+                var product_id = imgButton[1];
+                $.ajax({
+                    url: '/image-feature',
+                    type: 'GET',
+                    data: {product_id: product_id, image_id: image_id },
+                    success: function (response) {
+                        console.log('Successfully updated.')
+                    }
+                });
+            });
         });
     </script>
 @endsection

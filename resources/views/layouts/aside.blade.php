@@ -352,7 +352,7 @@ data-menu-vertical="true"data-menu-dropdown="true" data-menu-scrollable="true" d
                 <span class="m-menu__item-here"></span>
                 <i class="m-menu__link-icon flaticon-network"></i>
                 <span class="m-menu__link-text">
-                    Conversions
+                    Users
                 </span>
                 <i class="m-menu__ver-arrow la la-angle-right"></i>
             </a>
@@ -363,17 +363,17 @@ data-menu-vertical="true"data-menu-dropdown="true" data-menu-scrollable="true" d
                         <span class="m-menu__link">
                             <span class="m-menu__item-here"></span>
                             <span class="m-menu__link-text">
-                                Conversions
+                                List
                             </span>
                         </span>
                     </li>
                     <li class="m-menu__item " aria-haspopup="true"  data-redirect="true">
-                        <a  href="inner.html" class="m-menu__link ">
+                        <a  href="{{ route('register') }}" class="m-menu__link ">
                             <i class="m-menu__link-bullet m-menu__link-bullet--line">
                                 <span></span>
                             </i>
                             <span class="m-menu__link-text">
-                                Goals
+                                New
                             </span>
                         </a>
                     </li>
@@ -385,7 +385,7 @@ data-menu-vertical="true"data-menu-dropdown="true" data-menu-scrollable="true" d
                             <span class="m-menu__link-title">
                                 <span class="m-menu__link-wrap">
                                     <span class="m-menu__link-text">
-                                        Ecommerce
+                                        List
                                     </span>
                                     <span class="m-menu__link-badge">
                                         <span class="m-badge m-badge--warning m-badge--wide m-badge--rounded">

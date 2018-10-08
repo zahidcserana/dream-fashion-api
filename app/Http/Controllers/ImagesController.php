@@ -82,4 +82,13 @@ class ImagesController extends Controller
         $image_save_func($tmp, "$targetFile");
         return true;
     }
+
+    public function imageFeature(Request $request){
+
+        $product_id = $request->query('product_id');
+        $image_id = $request->query('image_id');
+        $data = array('image_id' => $image_id);
+        $product = DB::table('products')->where('id', $product_id)->update($data);
+        echo json_encode(array('success'=>true,'msg'=>'Successfully Updated'));
+    }
 }

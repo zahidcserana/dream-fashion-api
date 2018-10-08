@@ -78,8 +78,10 @@
                                         <div class="m-messenger__message-arrow"></div>
                                         <div class="m-messenger__message-content">
                                             <div class="m-messenger__message-text">
-                                                <img src="{{asset('/image/products/'.$image->original)}}" class="img-thumbnail"
+                                                <img src="{{asset('/image/products/'.$image->original)}}"
+                                                     class="img-thumbnail"
                                                      id="image_div" alt="Cinque Terre" width="304" height="236">
+                                                <button class="btn btn-primary make-feature" id="{{$image->id.'-'.$product->id}}">Make Feature</button>
                                             </div>
                                         </div>
                                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Validator;
 use DB;
+use App\Model\Product;
 
 class ProductsController extends Controller
 {
@@ -22,6 +23,22 @@ class ProductsController extends Controller
 //       $brands = DB::table('brands')->get();
 //       $categories = DB::table('categories')->get();
        $products = DB::table('products')->get();
+       foreach ($products as $product){
+           $product->name = '<a href="/add-product/'.$product->id.'">'.$product->name.'</a>';
+           $product->category = empty($product->category_id)==true?'':Product::find($product->id)->category->name;
+           $pId = $product->id;
+           $product->actions =  '
+               <div class="dropdown">
+                  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+                   Action <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="/add-product/'.$pId.'">Edit</a></li>
+                    <li><a href="/product-delete/'.$pId.'">Delete</a></li>
+                  </ul>
+                </div>
+					';
+       }
        $data['products'] = $products;
 //       $data['categories'] = $categories;
 //       $data['brands'] = $brands;

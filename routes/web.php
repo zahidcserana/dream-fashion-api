@@ -1,18 +1,28 @@
 <?php
 
 /*
+ * FRONT SECTION
+ */
+//Route::get('/', function () {
+//    return view('front.home');
+//});
+
+Route::get('/', 'Front\HomeController@home')->name('home_page');
+Route::get('/category/{id}/{limit?}', 'Front\ProductsController@categoryProducts')->name('category_products');
+Route::get('/view-product/{id}', 'Front\ProductsController@viewProduct')->name('view_product');
+Route::post('/add-to-cart', 'Front\CartsController@addToCart')->name('add_to_cart');
+Route::get('/view-cart', 'Front\CartsController@viewCart')->name('view_cart');
+
+
+/*
 |--------------------------------------------------------------------------
-| Web Routes
+|  ADMIN SECTION
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/admin', function () {
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -26,6 +36,7 @@ Route::post('/add-product', 'ProductsController@add')->name('add-product');
 Route::get('/product-delete/{id}', 'ProductsController@delete')->name('product-delete');
 // Product Image
 Route::post('/product_image', 'ImagesController@add')->name('product_image');
+Route::get('/image-feature', 'ImagesController@imageFeature')->name('image_feature');
 
 // Size
 Route::get('/size/{id?}', 'SizesController@index')->name('size');
