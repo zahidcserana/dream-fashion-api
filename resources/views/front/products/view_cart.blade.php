@@ -1,7 +1,45 @@
 @extends('front.layout.cart')
 @section('header_js')
     @parent
+    <script>
+        function increase(itemId) {
+            var result = document.getElementById('sst_' + itemId);
+            var sst = result.value;
+            if (!isNaN(sst)) {
+                result.value++;
+                $.ajax({
+                    url: "{{ route('update_cart') }}",
+                    type: 'POST',
+                    data: {_token: "{{ csrf_token() }}", item_id: itemId, increment: true},
+                    success: function (response) {
+                        var data = JSON.parse(response);
+                        if (data.success) {
+                            $("#price_" + itemId).text(data.data.price);
+                        }
+                    }
+                });
+            }
+        }
 
+        function decrease(itemId) {
+            var result = document.getElementById('sst_' + itemId);
+            var sst = result.value;
+            if (!isNaN(sst) && sst > 1) {
+                result.value--;
+                $.ajax({
+                    url: "{{ route('update_cart') }}",
+                    type: 'POST',
+                    data: {_token: "{{ csrf_token() }}", item_id: itemId, increment: false},
+                    success: function (response) {
+                        var data = JSON.parse(response);
+                        if (data.success) {
+                            $("#price_" + itemId).text(data.data.price);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 @endsection
 @section('front_content')
 
@@ -33,20 +71,20 @@
                                         <td><p class="red">${{$item->unit_price}}</p></td>
                                         <td>
                                             <div class="quantity">
-                                                <h6>Quantity</h6>
                                                 <div class="custom">
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                                    <button onclick="decrease({{$item->id}})"
                                                             class="reduced items-count" type="button"><i
                                                                 class="icon_minus-06"></i></button>
-                                                    <input type="text" name="qty" id="sst" maxlength="12" value="1"
+                                                    <input type="text" name="qty" id="sst_{{$item->id}}" maxlength="12"
+                                                           value="{{$item->quantity}}"
                                                            title="Quantity:" class="input-text qty">
-                                                    <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                                    <button onclick="increase({{$item->id}})"
                                                             class="increase items-count" type="button"><i
                                                                 class="icon_plus"></i></button>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><p>$150</p></td>
+                                        <td><p id="price_{{$item->id}}">{{$item->price}}</p></td>
                                     </tr>
                                 @endforeach
                                 <tr>

@@ -42,8 +42,7 @@ class ProductsController extends Controller
 
         $data['from'] = $from;
         $data['to'] = $to;
-
-
+        //dd($products);
         return view('front.products.products', $data);
     }
 

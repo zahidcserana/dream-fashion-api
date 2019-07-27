@@ -32,7 +32,6 @@ class BrandController extends Controller
                 ->withErrors($validator)
                 ->withInput($request->input());
         }
-
         $input = array(
             'name' => $data['name']
         );
@@ -42,7 +41,6 @@ class BrandController extends Controller
         else{
             DB::table('brands')->insertGetid($input);
         }
-
         return redirect()->route('brand');
     }
     public function delete($id){

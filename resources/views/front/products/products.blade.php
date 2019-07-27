@@ -2,11 +2,11 @@
 @section('header_js')
     @parent
     <script>
-        function addToCart(id) {
+        function addToCart(id,price) {
             $.ajax({
                 url: "{{ route('add_to_cart') }}",
                 type: 'POST',
-                data: {_token: "{{ csrf_token() }}", product_id: id},
+                data: {_token: "{{ csrf_token() }}", product_id: id,price:price},
                 success: function (response) {
                     var response = $.parseJSON(response);
                     if (response.success) {
@@ -79,9 +79,8 @@
                                                 <ul>
                                                     <li class="p_icon"><a href="#"><i class="icon_piechart"></i></a>
                                                     </li>
-                                                    <li><a class="add_cart_btn" onclick="addToCart({{$product->id}})"
-                                                           href="javascript:void(0);">Add To
-                                                            Cart</a></li>
+                                                    <li><a class="add_cart_btn" onclick="addToCart('{{$product->id}}','{{$product->price}}')"
+                                                           href="javascript:void(0);">Add ToCart</a></li>
                                                     <li class="p_icon"><a href="#"><i class="icon_heart_alt"></i></a>
                                                     </li>
                                                 </ul>

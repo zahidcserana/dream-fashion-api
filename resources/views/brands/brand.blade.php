@@ -32,8 +32,8 @@
                         <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
-                    @endif
-                <!--begin::Form-->
+                @endif
+                    <!--begin::Form-->
                     <form class="m-form" name="brand-form" method="POST" action="{{route('brand')}}">
                         {{ csrf_field() }}
                         <div class="m-portlet__body">

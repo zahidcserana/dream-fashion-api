@@ -11,6 +11,7 @@ Route::get('/', 'Front\HomeController@home')->name('home_page');
 Route::get('/category/{id}/{limit?}', 'Front\ProductsController@categoryProducts')->name('category_products');
 Route::get('/view-product/{id}', 'Front\ProductsController@viewProduct')->name('view_product');
 Route::post('/add-to-cart', 'Front\CartsController@addToCart')->name('add_to_cart');
+Route::post('/update-cart', 'Front\CartsController@updateCart')->name('update_cart');
 Route::get('/view-cart', 'Front\CartsController@viewCart')->name('view_cart');
 
 
